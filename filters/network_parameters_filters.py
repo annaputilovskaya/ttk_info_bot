@@ -19,4 +19,3 @@ def valid_network_ip_filter(message: Message):
             return None
 
     return None
-

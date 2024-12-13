@@ -8,6 +8,6 @@ from .base_router import router as base_router
 router = Router(name=__name__)
 
 router.include_routers(
-network_router,
+    network_router,
     base_router,
-   )
+)
