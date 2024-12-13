@@ -1,4 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 
 class ButtonText:
@@ -22,3 +23,21 @@ def get_on_start_kb() -> ReplyKeyboardMarkup:
         resize_keyboard=True,
     )
     return markup
+
+
+def get_prefix_kb() -> ReplyKeyboardMarkup:
+    """
+    Получает клавиатуру префиксов сети (битности).
+    """
+    bit_rates = [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+    ]
+    builder = ReplyKeyboardBuilder()
+    for bit_rate in bit_rates:
+        builder.add(KeyboardButton(text=bit_rate))
+    builder.row(KeyboardButton(text="Отмена"))
+    return builder.as_markup(resize_keyboard=True)
