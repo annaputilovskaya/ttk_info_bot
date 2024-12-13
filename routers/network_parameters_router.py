@@ -4,7 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
 from filters.network_parameters_filters import valid_network_ip_filter
-from keyboards.common_keyboards import ButtonText, get_prefix_kb
+from keyboards.common_keyboards import ButtonText, get_prefix_kb, get_on_start_kb
 from routers.states import NetworkParameters
 
 router = Router(name=__name__)
@@ -39,3 +39,12 @@ async def handle_invalid_network_ip(
     await message.answer(
         "Некорректный формат IP сети. Пожалуйста, введите текст в формате 255.255.255.255",
     )
+
+
+@router.message(NetworkParameters.prefix, F.text == "Отмена")
+async def handle_prefix_cancel(
+        message: Message,
+        state: FSMContext,
+):
+    await state.clear()
+    await message.answer('Отмена ввода', reply_markup=get_on_start_kb())
