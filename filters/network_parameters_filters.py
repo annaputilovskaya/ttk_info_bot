@@ -9,10 +9,14 @@ def valid_network_ip_filter(message: Message):
     из четырех октетов в виде чисел и возвращает его.
     В случае невозможности преобразования ничего не возвращает.
     """
-    try:
-        octets = reformat_from_str_to_list_octets(message.text)
-        if len(octets) == 4 and None not in octets:
-            return {"network": octets}
-        return None
-    except TypeError:
-        return None
+    if message.text:
+        try:
+            octets = reformat_from_str_to_list_octets(message.text)
+            if len(octets) == 4 and None not in octets:
+                return {"network": octets}
+            return None
+        except ValueError:
+            return None
+
+    return None
+
