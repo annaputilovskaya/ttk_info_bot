@@ -1,9 +1,9 @@
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from aiogram.utils import markdown
 
-from keyboards.common_keyboards import get_on_start_kb
+from keyboards.common_keyboards import get_on_start_kb, ButtonText
 
 router = Router(name=__name__)
 
@@ -31,6 +31,18 @@ async def cmd_help(message: Message):
     await message.answer(text="Чем могу помочь?", reply_markup=get_on_start_kb())
 
 
+@router.message(F.text == ButtonText.OTHER)
+async def handle_other(
+    message: Message,
+):
+    """
+    Обрабатывает другие функции.
+    """
+    await message.answer(
+        text="Другие функции пока в разработке", reply_markup=get_on_start_kb()
+    )
+
+
 @router.message()
 async def handle_unknown_input(message: Message):
     """
@@ -43,4 +55,5 @@ async def handle_unknown_input(message: Message):
             "Если меню не отображается, введите команду ",
             markdown.hbold("/help"),
         ),
+        reply_markup=get_on_start_kb(),
     )
