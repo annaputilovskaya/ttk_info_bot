@@ -40,7 +40,7 @@ async def handle_invalid_network_ip(message: Message):
     )
 
 
-@router.message(NetworkParameters.prefix, F.text == "Отмена")
+@router.message(NetworkParameters.prefix, F.text == ButtonText.CANCEL)
 async def handle_prefix_cancel(
     message: Message,
     state: FSMContext,
