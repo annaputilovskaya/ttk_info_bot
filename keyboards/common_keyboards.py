@@ -8,7 +8,7 @@ class ButtonText:
     """
 
     SUBNET = "Параметры сети"
-    HELP = "Все функции"
+    OTHER = "Другие функции"
     CANCEL = "Отмена"
     PREFIX = [
         "26",
@@ -24,7 +24,7 @@ def get_on_start_kb() -> ReplyKeyboardMarkup:
     Получает стартовую клавиатуру.
     """
     button_network = KeyboardButton(text=ButtonText.SUBNET)
-    button_help = KeyboardButton(text=ButtonText.HELP)
+    button_help = KeyboardButton(text=ButtonText.OTHER)
     buttons_row = [button_network, button_help]
     markup = ReplyKeyboardMarkup(
         keyboard=[
