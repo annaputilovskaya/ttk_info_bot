@@ -6,9 +6,17 @@ class ButtonText:
     """
     Названия кнопок меню.
     """
+
     SUBNET = "Параметры сети"
     HELP = "Все функции"
     CANCEL = "Отмена"
+    PREFIX = [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+    ]
 
 
 def get_on_start_kb() -> ReplyKeyboardMarkup:
@@ -19,7 +27,9 @@ def get_on_start_kb() -> ReplyKeyboardMarkup:
     button_help = KeyboardButton(text=ButtonText.HELP)
     buttons_row = [button_network, button_help]
     markup = ReplyKeyboardMarkup(
-        keyboard=[buttons_row,],
+        keyboard=[
+            buttons_row,
+        ],
         resize_keyboard=True,
     )
     return markup
@@ -29,15 +39,9 @@ def get_prefix_kb() -> ReplyKeyboardMarkup:
     """
     Получает клавиатуру префиксов сети (битности).
     """
-    bit_rates = [
-        "26",
-        "27",
-        "28",
-        "29",
-        "30",
-    ]
+
     builder = ReplyKeyboardBuilder()
-    for bit_rate in bit_rates:
-        builder.add(KeyboardButton(text=bit_rate))
+    for prefix in ButtonText.PREFIX:
+        builder.add(KeyboardButton(text=prefix))
     builder.row(KeyboardButton(text="Отмена"))
     return builder.as_markup(resize_keyboard=True)
