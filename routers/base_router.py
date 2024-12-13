@@ -29,3 +29,18 @@ async def cmd_help(message: Message):
     Выводит стартовое меню.
     """
     await message.answer(text="Чем могу помочь?", reply_markup=get_on_start_kb())
+
+
+@router.message()
+async def handle_unknown_input(
+        message: Message
+):
+    """
+    Обрабатывает неизвестный ввод.
+    Выводит стартовое меню.
+    """
+    await message.answer(
+        text=markdown.text(
+            "Неизвестный запрос. Пожалуйста, выберите необходимую функцию меню. "
+            "Если меню не отображается, введите команду ", markdown.hbold("/help")),
+    )
