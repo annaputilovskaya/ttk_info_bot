@@ -30,7 +30,7 @@ def get_network_info(network: str, prefix: str) -> dict | None:
     gateway = first_octets_str + "." + gateway_last_octet
     first_host_ip = f"{first_octets_str}.{str(octets[3] + 2)}"
     last_host_ip = f"{first_octets_str}.{str(octets[3] + ips_amount - 2)}"
-    mask = f"{first_octets_str}.{str(256 - ips_amount)}"
+    mask = f"255.255.255.{str(256 - ips_amount)}"
     dns1 = "89.232.109.74"
     dns2 = "217.23.177.252"
 
