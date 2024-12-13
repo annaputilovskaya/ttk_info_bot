@@ -30,3 +30,12 @@ async def handle_valid_network_ip(
         "Выберите префикс (битность сети) или отмените ввод:",
         reply_markup=get_prefix_kb(),
     )
+
+
+@router.message(NetworkParameters.network_ip)
+async def handle_invalid_network_ip(
+        message: Message
+):
+    await message.answer(
+        "Некорректный формат IP сети. Пожалуйста, введите текст в формате 255.255.255.255",
+    )
